@@ -1,6 +1,5 @@
 <script>
-function isset(varname)
-{
-	return typeof varname != 'undefined'
+function isset(varname) {
+	return typeof (varname !== 'undefined');
 }
 </script>

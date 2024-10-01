@@ -7,7 +7,7 @@ if (isset(c)) document.write('c = "' + c + '"<br />')
 
 function test()
 {
-	    a = 123
+        a = 123
 	var b = 456
 	if (a == 123) var c = 789
 }
