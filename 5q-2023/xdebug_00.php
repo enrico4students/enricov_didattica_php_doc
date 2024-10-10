@@ -6,4 +6,3 @@ $y = 2;
 $z = 3;
 $tot = $x+$y+$z;
 echo $tot;
-?>
