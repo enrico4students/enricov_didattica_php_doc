@@ -23,10 +23,6 @@ echo "Hello $x";
 
 
 
-
-
-
-
 /* Single quoted strings does not perform such actions, it returns the string like it was written, with the variable name:
 */
 $x = "John";
@@ -56,15 +52,3 @@ The PHP strpos() function searches for a specific text within a string.
 echo strpos("Hello world!", "world");
 
 
-// Upper Case
-$x = "Hello World!";
-echo strtoupper($x);
-
-// Lower Case
-$x = "Hello World!";
-echo strtolower($x);
-
-
-/*
-
-*/
