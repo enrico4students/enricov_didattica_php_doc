@@ -1,6 +1,7 @@
 <?php
 // https://www.w3schools.com/php/php_numbers.asp
 
+const ENDL = "<br/>\n";
 
 echo "<br/>\n";
 /*
@@ -106,15 +107,77 @@ However, the PHP var_dump() function returns the data type and value:
 
 Example
 Check if a numeric value is finite or infinite:
-
+*/
 $x = 1.9e411;
+echo "\$x = $x is_infinite($x): " . is_infinite($x) . "<br/>\n"; # ewv added
 var_dump($x);
+
+
+
+
+
+echo ENDL;
+/* PHP NaN
+NaN stands for Not a Number.
+
+NaN is used for impossible mathematical operations.
+
+PHP has the following functions to check if a value is not a number:
+
+is_nan()
+However, the PHP var_dump() function returns the data type and value:
+
+Example
+Invalid calculation will return a NaN value:
 */
+echo "Invalid calculation will return a NaN value" . ENDL;
+$x = acos(8);
+var_dump($x);
 
 
 
 
 
-echo "<br/>\n";
-/*
-*/
+echo ENDL;
+/* PHP Numerical Strings
+The PHP is_numeric() function can be used to find whether a variable is numeric. 
+The function returns true if the variable is a number or a numeric string, false otherwise.
+
+Example
+Check if the variable is numeric:
+*/ 
+$x = 5985;
+var_dump(is_numeric($x)); echo ENDL;
+
+$x = "5985";
+var_dump(is_numeric($x)); echo ENDL;
+$x = "59.85" + 100;
+var_dump(is_numeric($x)); echo ENDL;
+
+$x = "Hello";
+var_dump(is_numeric($x)); echo ENDL;
+
+
+
+
+
+echo ENDL;
+/* PHP Casting Strings and Floats to Integers
+Sometimes you need to cast a numerical value into another data type.
+
+The (int), (integer), and intval() functions are often used to convert a value to an integer.
+
+Example
+Cast float and string to integer:
+*/ 
+// Cast float to int
+$x = 23465.768;
+$int_cast = (int)$x;
+echo $int_cast;
+
+echo "<br>";
+
+// Cast string to int
+$x = "23465.768";
+$int_cast = (int)$x;
+echo $int_cast;
