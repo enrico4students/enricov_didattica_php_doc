@@ -5,7 +5,8 @@ function f() {
     echo 'il valore è $x';
 }
 
-$v = array()
-
+$v = array();
 
 f();
+
+echo "";
