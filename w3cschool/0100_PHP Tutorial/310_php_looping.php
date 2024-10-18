@@ -1,197 +1,261 @@
 <?php
-// https://www.w3schools.com/php/php_functions.asp
+// https://www.w3schools.com/php/php_switch.asp
 
 define("ENDL", "<br/>\n");
 
 function nl() { echo ENDL;}
 
 
-// PHP has more than 1000 built-in functions, and in addition you can create your own custom functions.
-
-
-
 nl();
-// Create a Function
-// A user-defined function declaration starts with the keyword function, followed by the name of the function:
-function myMessage() {
-  echo "Hello world!";
-}
+/* In PHP, we have the following loop types:
 
-
-
-// Call a Function
-// To call the function, just write its name followed by parentheses ():
-myMessage();
-
-
-
-
-nl();
-/* PHP Function Arguments
-Information can be passed to functions through arguments. An argument is just like a variable.
-
-Arguments are specified after the function name, inside the parentheses. You can add as many arguments as you want, just separate them with a comma.
-*/
-// The following example has a function with one argument ($fname). When the familyName() function is called, we also pass along a name, e.g. ("Jani"), and the name is used inside the function, which outputs several different first names, but an equal last name:
-
-function familyName($fname) {
-  echo "$fname Refsnes.<br>\n";
-}
-
-familyName("Jani");
-familyName("Hege");
-familyName("Stale");
-familyName("Kai Jim");
-familyName("Borge");
-
-
-// The following example has a function with two arguments ($fname, $year):
-
-function familyName2($fname, $year) {
-  echo "$fname Refsnes. Born in $year <br>";
-}
-
-familyName2("Hege", "1975");
-familyName2("Stale", "1978");
-familyName2("Kai Jim", "1983");
-
-
-
-
-
-
-nl();
-/* PHP Default Argument Value
-The following example shows how to use a default parameter. If we call the function setHeight() without arguments it takes the default value as argument:
+while - loops through a block of code as long as the specified condition is true
+do...while - loops through a block of code once, and then repeats the loop as long as the specified condition is true
+for - loops through a block of code a specified number of times
+foreach - loops through a block of code for each element in an array
 */
 
-function setHeight($minheight = 50) {
-  echo "The height is : $minheight <br>";
-}
-
-setHeight(350);
-setHeight(); // will use the default value of 50
-setHeight(135);
-setHeight(80);
-
-
-
-
-
 nl();
-/* PHP Functions - Returning values
-To let a function return a value, use the return statement:
-*/
-function sum($x, $y) {
-  $z = $x + $y;
-  return $z;
-}
-echo "5 + 10 = " . sum(5, 10) . "<br>\n";
-echo "7 + 13 = " . sum(7, 13) . "<br>\n";
-echo "2 + 4 = " . sum(2, 4);
-
-
-
-nl();
-/* Passing Arguments by Reference
-In PHP, arguments are usually passed by value, which means that a copy of the value is used in the function and the variable that was passed into the function cannot be changed.
-
-When a function argument is passed by reference, changes to the argument also change the variable that was passed in. To turn a function argument into a reference, the & operator is used:
-Use a pass-by-reference argument to update a variable:
-*/
-function add_five(&$value) {
-  $value += 5;
+// The PHP while Loop
+$i = 1;
+while ($i < 6) {
+  echo $i;
+  $i++;
 }
 
-$num = 2;
-add_five($num);
-echo $num;
+
+// The break Statement
+// With the break statement we can stop the loop even if the condition is still true:
+
+$i = 1;
+while ($i < 6) {
+    if ($i == 3) break;
+    echo $i; nl();
+    $i++;
+}
 
 
-/* Variable Number of Arguments
-By using the ... operator in front of the function parameter, the function accepts an unknown number of arguments. This is also called a variadic function.
+/// The continue Statement
+// With the continue statement we can stop the current iteration, and continue with the next:
 
-The variadic function argument becomes an array.
-*/
+$i = 0;
+while ($i < 6) {
+  $i++;
+  if ($i == 3) continue;
+  echo $i; nl();
+}
 
-function sumMyNumbers(...$x) {
-  $n = 0;
-  $len = count($x);
-  for($i = 0; $i < $len; $i++) {
-    $n += $x[$i];
+
+// Alternative Syntax
+// The while loop syntax can also be written with the endwhile statement like this
+
+$i = 1;
+while ($i < 6):
+  echo $i;
+  $i++;
+endwhile;
+
+// https://www.w3schools.com/php/php_looping_do_while.asp
+$i = 1;
+
+do {
+  echo $i; nl();
+  $i++;
+} while ($i < 6);
+
+$i = 8;
+
+do {
+  echo $i; nl();
+  $i++;
+} while ($i < 6);
+
+
+// The break Statement
+// With the break statement we can stop the loop even if the condition is still true:
+
+//Stop the loop when $i is 3:
+$i = 1;
+
+do {
+  if ($i == 3) break;
+  echo $i; nl();
+  $i++;
+} while ($i < 6);
+
+
+
+
+
+// The continue Statement
+// With the continue statement we can stop the current iteration, and continue with the next:
+
+$i = 0;
+
+do {
+  $i++;
+  if ($i == 3) continue;
+  echo $i; nl();
+} while ($i < 6);
+
+
+
+
+
+
+
+// https://www.w3schools.com/php/php_looping_for.asphttps://www.w3schools.com/php/php_looping_for.asp
+
+
+/* The PHP for Loop
+The for loop is used when you know how many times the script should run.
+
+Syntax
+for (expression1, expression2, expression3) {
+  // code block
+}
+This is how it works:
+
+expression1 is evaluated once
+expression2 is evaluated before each iteration
+expression3 is evaluated after each iteration
+ */
+
+// Print the numbers from 0 to 10:
+for ($x = 0; $x <= 10; $x++) {
+    echo "The number is: $x <br>";
+}
+
+
+for ($x = 0; $x <= 10; $x++) {
+    if ($x == 3) break;
+    echo "The number is: $x <br>";
+}
+
+for ($x = 0; $x <= 10; $x++) {
+    if ($x == 3) continue;
+    echo "The number is: $x <br>";
+}
+
+// Step 10 - This example counts to 100 by tens:
+for ($x = 0; $x <= 100; $x+=10) {
+  echo "The number is: $x";  nl();
+}
+
+
+
+
+
+
+// The foreach Loop on Arrays
+// The most common use of the foreach loop, is to loop through the items of an array.
+
+// Loop through the items of an indexed array:
+
+$colors = array("red", "green", "blue", "yellow");
+
+foreach ($colors as $x) {
+  echo "$x <br>\n";
+}
+
+
+// Keys and Values
+// The array above is an indexed array, where the first item has the key 0, the second has the key 1, and so on.
+// Associative arrays are different, associative arrays use named keys that you assign to them, and when looping through associative arrays, you might want to keep the key as well as the value.
+
+// This can be done by specifying both the key and value in the foreach defintition, like this:
+
+//Print both the key and the value from the $members array:
+$members = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+foreach ($members as $x => $y) {
+  echo "$x : $y <br>\n";
+}
+
+// ev - added
+$colors = array("red", "green");
+foreach ($colors as $key => $value) {
+  echo "$key => $value<br>\n";
+}
+
+$colors[20] = 20;
+foreach ($colors as $key => $value) echo "$key => $value<br>\n";
+
+
+// The foreach Loop on Objects
+// The foreach loop can also be used to loop through properties of an object:
+
+// Print the property names and values of the $myCar object:
+
+class Car {
+  public $color;
+  public $model;
+  public function __construct($color, $model) {
+    $this->color = $color;
+    $this->model = $model;
   }
-  return $n;
 }
 
-$a = sumMyNumbers(5, 2, 6, 2, 7, 7);
-echo $a;
-
+$myCar = new Car("red", "Volvo");
+foreach ($myCar as $x => $y) {
+  echo "$x: $y <br>\n";
+}
 
 // EV added
-function enricoVariadic(...$x) {
-
-  foreach($x as $k => $v) {
-    echo "$k => $v\n";
+foreach (new Car("bianca", "500") as $x => $y) {
+    echo "$x: $y <br>\n";
   }
+
+
+// The break Statement
+$colors = array("red", "green", "blue", "yellow");
+foreach ($colors as $x) {
+if ($x == "blue") break;
+echo "$x <br>";
 }
 
-enricoVariadic(1, "pippo", 2, "pluto","boh", "bah", 5, "cinque");
+// The continue Statement
+$colors = array("red", "green", "blue", "yellow");
 
-
-
-// The variadic argument must be the last argument:
-function myFamily($lastname, ...$firstname) {
-  $txt = "";
-  $len = count($firstname);
-  for($i = 0; $i < $len; $i++) {
-    $txt = $txt."Hi, $firstname[$i] $lastname.<br>";
-  }
-  return $txt;
+foreach ($colors as $x) {
+  if ($x == "blue") continue;
+  echo "$x <br>";
 }
 
-$a = myFamily("Doe", "Jane", "John", "Joey");
-echo $a;
 
+// Foreach Byref
 
-
-// If the variadic argument is not the last argument, you will get an error.
-// function myFamily(...$firstname, $lastname) {}
-
-
-// In PHP 7, type declarations were added. This gives us an option to specify the expected data type when declaring a function, and by adding the strict declaration, it will throw a "Fatal Error" if the data type mismatches.
-// In the following example we try to send both a number and a string to the function without using strict:
-function addNumbers(int $a, int $b) {
-  return $a + $b;
+// When looping through the array items, any changes done to the array item will, by default, NOT affect the original array:
+// By default, changing an array item will not affect the original array:
+$colors = array("red", "green", "blue", "yellow");
+foreach ($colors as $x) {
+  if ($x == "blue") $x = "pink";
 }
-echo addNumbers(5, "5 days");
-// since strict is NOT enabled "5 days" is changed to int(5), and it will return 10
+var_dump($colors);
 
+// By assigning the array items by reference, changes will affect the original array:
 
-// To specify strict we need to set declare(strict_types=1);. 
-// This must be on the very first line of the PHP file.
+$colors = array("red", "green", "blue", "yellow");
 
-// declare(strict_types=1); // strict requirement
-
-function addNumbers2(int $a, int $b) {
-  return $a + $b;
+foreach ($colors as &$x) {
+  if ($x == "blue") $x = "pink";
 }
-echo addNumbers2(5, "5 days");
-// since strict is enabled and "5 days" is not an integer, an error will be thrown
+var_dump($colors);
+
+// EV added
+$x = 10;
+$y = &$x;
+$y = 5;
+echo $y;
 
 
-// PHP Return Type Declarations
-// PHP 7 also supports Type Declarations for the return statement. Like with the type declaration for function arguments, by enabling the strict requirement, it will throw a "Fatal Error" on a type mismatch.
-// To declare a type for the function return, add a colon ( : ) and the type right before the opening curly ( { )bracket when declaring the function.
+// The foreach loop syntax can also be written with the endforeach statement like this
+$colors = array("red", "green", "blue", "yellow");
+foreach ($colors as $x) :
+  echo "$x <br>";
+endforeach;
 
-// declare(strict_types=1); // strict requirement
-function addNumbers3(float $a, float $b) : float {
-  return $a + $b;
-}
-echo addNumbers3(1.2, 5.2);
+// https://www.w3schools.com/php/php_looping_break.asp
+// ignorato, cose ripetute 2000 volte
 
-// You can specify a different return type, than the argument types, but make sure the return is the correct type:
-// declare(strict_types=1); // strict requirement
-function addNumbers4(float $a, float $b) : int {
-  return (int)($a + $b);
-}
-echo addNumbers4(1.2, 5.2);
+// https://www.w3schools.com/php/php_looping_continue.asp
+// ignorato, cose ripetute 2000 volte
