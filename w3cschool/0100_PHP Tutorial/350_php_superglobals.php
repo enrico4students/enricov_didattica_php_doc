@@ -189,26 +189,167 @@ HTML link
 // https://www.w3schools.com/php/php_superglobals_post.asp
 
 nl();
-/*
+/* PHP $_POST
+$_POST contains an array of variables received via the HTTP POST method.
+
+There are two main ways to send variables via the HTTP Post method:
+
+- HTML forms
+- JavaScript HTTP requests
 */
 
 
 
 
 nl();
-/*
+/* $_POST in HTML Forms
+A HTML form submits information via the HTTP POST method if the form's method attribute is set to "POST".
+
+To demonstrate this, we start by creating a simple HTML form:
+
+HTML Form
+
+<html>
+<body>
+
+<form method="POST" action="demo_request.php">
+  Name: <input type="text" name="fname">
+  <input type="submit">
+</form>
+
+</body>
+</html>
 */
 
 
 
 
 nl();
-/*
+/* When sending a HTTP request in JavaScript, you can specify that the HTTP method is POST.
+
+To demonstrate this we start by creating a JavaScript function containing a HTTP request:
+
+JavaScript function
+
+function myfunction() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "demo_phpfile.php");
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.onload = function() {
+    document.getElementById("demo").innerHTML = this.responseText;
+  }
+  xhttp.send("fname=Mary");
+  }
+}
+
+The code above will:
+
+Intiate a HTTP request
+Set the HTTP method to POST
+Set a valid request header
+Create a function to execute when the request is done
+Send the HTTP request with a variable fname set to Mary
+Look at the function that will be executed when the request is done:
+
+xhttp.onload = function() {
+    document.getElementById("demo").innerHTML = this.responseText;
+}
+
+It will try to write a response from the operation in a HTML element with id="demo".
+
+Let us make a HTML page with such element, and also a button that executes the function.
+
+If we also add the the JavaScript, the page looks like this:
+
+vedi file 352_superglobals_post_javascriptRequests.php
+
+*/
+
+
+// https://www.w3schools.com/php/php_superglobals_get.asp
+
+nl();
+/* PHP $_GET
+$_GET contains an array of variables received via the HTTP GET method.
+
+There are two main ways to send variables via the HTTP GET method:
+
+Query strings in the URL
+HTML Forms
+*/
+
+
+/* Query string in the URL
+A query string is data added at the end of a URL. 
+In the link below, everything after the ? sign is part of the query string:
+
+<a href="demo_phpfile.php?subject=PHP&web=W3schools.com">Test $GET</a>
+
+The query string above contains two key/value pairs:
+
+subject=PHP
+web=W3schools.com
+In the PHP file we can use the $_GET variable to collect the value of the query string.
+
+Example
+The PHP file demo_phpfile.php:
+
+<html>
+<body>
+
+<?php
+echo "Study " . $_GET['subject'] . " at " . $_GET['web'];
+?>
+
+</body>
+</html>
+
 */
 
 
 
 
 nl();
-/*
+/* $_GET in HTML Forms
+A HTML form submits information via the HTTP GET method if the form's method attribute is set to "GET".
+
+To demonstrate this, we start by creating a simple HTML form:
+
+HTML Form
+
+<html>
+<body>
+
+<form action="welcome_get.php" method="GET">
+  Name: <input type="text" name="name">
+  E-mail: <input type="text" name="email">
+  <input type="submit">
+</form>
+
+</body>
+</html>
+
+
+When a user clicks the submit button, the form data is sent to a PHP file specified in the action attribute of the <form> tag.
+
+The form fields are sent to the PHP file, with your input, as query strings:
+
+welcome_get.php?name=John&email=john@example.com
+In the action file we can use the $_GET variable to collect the value of the input fields.
+
+Example
+PHP code inside the welcome_get.php page:
+
+<html>
+<body>
+
+Welcome <?php echo $_GET["name"]; ?><br>
+Your email address is: <?php echo $_GET["email"]; ?>
+
+</body>
+</html>
+
+
 */
+
+

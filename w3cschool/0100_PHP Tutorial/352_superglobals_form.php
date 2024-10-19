@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($name)) {
         echo "Name is empty";
     } else {
-        echo "form creata e gestista da stesso file php:<br/>" . $_SERVER['PHP_SELF'] . "<br/>";
+        echo "form creata e gestita da stesso file php:<br/>" . $_SERVER['PHP_SELF'] . "<br/>";
         echo "il nome inserito è $name";
     }
 }

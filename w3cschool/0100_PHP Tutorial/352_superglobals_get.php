@@ -1,7 +1,13 @@
 <html>
 <body>
 
-<a href="356_demo_phpfile.php?subject=PHP&web=W3schools.com">Test $GET</a><br/>
+<!--
+<a href="352_superglobals_get.php?subject=PHP&web=W3schools.com">Test $GET</a><br/>
+-->
+
+<?php
+echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '?subject=PHP&web=W3schools.com">Test $GET</a><br/>';
+?>
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "GET") {

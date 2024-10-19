@@ -3,7 +3,10 @@
 <html>
 <body>
 
-<a href="357_demo_phpfile.php?subject=PHP&web=W3schools.com">Test $GET</a>
+<?php
+echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '?subject=PHP&web=W3schools.com">Test $GET</a><br/>';
+?>
+
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
