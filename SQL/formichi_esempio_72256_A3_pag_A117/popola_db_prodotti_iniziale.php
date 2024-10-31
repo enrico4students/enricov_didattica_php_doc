@@ -3,19 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "formichi_prodotti"; // Sostituisci con il tuo database
-
-function startsWith($string, $startString) {
-    return substr($string, 0, strlen($startString)) === $startString;
-}
-
-
-function createPaddedString($myStr, $numStr, $nrPad) {
-    // Convert numStr in una stringa e applica il padding a sinistra con zeri
-    $paddedNumStr = str_pad($numStr, $nrPad, "0", STR_PAD_LEFT);
-    // Concatena myStr con il numero formattato
-    return $myStr . $paddedNumStr;
-}
+$dbname = "prodotti"; // Sostituisci con il tuo database
 
 // Connessione al database
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -40,6 +28,9 @@ function generateStringFromVarcharType($varcharType) {
     return $randomString;
 }
 
+function startsWith($string, $startString) {
+    return substr($string, 0, strlen($startString)) === $startString;
+}
 
 // Funzione per generare dati casuali in base al tipo di colonna
 function generateRandomData($type) {
@@ -71,53 +62,15 @@ function generateRandomData($type) {
     }
 }
 
-
-function getDistinctValues($conn, $tableName, $fieldName) {
-    // Parametri di connessione al database
-
-    // Controllo della connessione
-    if ($conn->connect_error) {
-        die("Connessione fallita: " . $conn->connect_error);
-    }
-
-    // Query per ottenere i valori distinti
-    $query = "SELECT DISTINCT `$fieldName` FROM `$tableName`";
-    $result = $conn->query($query);
-
-    $values = [];
-    if ($result && $result->num_rows > 0) {
-        // Iterazione sui risultati e aggiunta all'array
-        while ($row = $result->fetch_assoc()) {
-            $values[] = $row[$fieldName];
-        }
-    }
-    return $values;
-}
-
-
-
-function populateTable($conn, $tableName, $columnNames, $columnTypes, $numRows) {
-    // Inserisci da 20 a 50 righe casuali per ogni tabella
-    for ($i = 0; $i < $numRows; $i++) {
-        $values = [];
-        foreach ($columnTypes as $type) {
-            $values[] = generateRandomData($type);
-        }
-        $insertQuery = "INSERT INTO $tableName (" . implode(", ", $columnNames) . ") VALUES (" . implode(", ", $values) . ");";
-        if (!$conn->query($insertQuery)) {
-            echo "Errore: " . $conn->error . "<br>\n la query era:\n$insertQuery";
-        }
-    }
-}
-
-
 // Recupera le tabelle dal database
 $tables = $conn->query("SHOW TABLES");
 if ($tables->num_rows > 0) {
     while ($table = $tables->fetch_array()) {
         $tableName = $table[0];
+        
         // Recupera le colonne della tabella
-        $columns = $conn->query("SHOW COLUMNS FROM $tableName");        
+        $columns = $conn->query("SHOW COLUMNS FROM $tableName");
+        
         // Estrai i nomi delle colonne e i tipi per generare dati casuali
         $columnNames = [];
         $columnTypes = [];
@@ -129,8 +82,18 @@ if ($tables->num_rows > 0) {
         // Avvia la transazione
         $conn->begin_transaction();
         try {
+            // Inserisci da 20 a 50 righe casuali per ogni tabella
             $numRows = rand(20, 50);
-            populateTable($conn, $tableName, $columnNames, $columnTypes, $numRows);    
+            for ($i = 0; $i < $numRows; $i++) {
+                $values = [];
+                foreach ($columnTypes as $type) {
+                    $values[] = generateRandomData($type);
+                }
+                $insertQuery = "INSERT INTO $tableName (" . implode(", ", $columnNames) . ") VALUES (" . implode(", ", $values) . ");";
+                if (!$conn->query($insertQuery)) {
+                    echo "Errore: " . $conn->error . "<br>\n la query era:\n$insertQuery";
+                }
+            }
             $conn->query("commit;");
             echo "Inserite $numRows righe nella tabella $tableName.<br>";
         } catch (Exception $e) {
