@@ -10,12 +10,6 @@ $password = "";
 $dbname = "formichi_prodotti"; // Sostituisci con il tuo database
 
 
-function createPaddedString($myStr, $numStr, $nrPad) {
-    // Convert numStr in una stringa e applica il padding a sinistra con zeri
-    $paddedNumStr = str_pad($numStr, $nrPad, "0", STR_PAD_LEFT);
-    // Concatena myStr con il numero formattato
-    return $myStr . $paddedNumStr;
-}
 
 // Connessione al database
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -98,6 +92,7 @@ function getDistinctValues($conn, $tableName, $fieldName) {
 
 function populateTable($conn, $tableName, $columnNames, $columnTypes, $numRows) {
     // Inserisci da 20 a 50 righe casuali per ogni tabella
+    $nr_errori = 0;
     for ($i = 0; $i < $numRows; $i++) {
         $values = [];
         foreach ($columnTypes as $type) {
@@ -106,8 +101,10 @@ function populateTable($conn, $tableName, $columnNames, $columnTypes, $numRows) 
         $insertQuery = "INSERT INTO $tableName (" . implode(", ", $columnNames) . ") VALUES (" . implode(", ", $values) . ");";
         if (!$conn->query($insertQuery)) {
             echo "Errore: " . $conn->error . "<br>\n la query era:\n$insertQuery";
+            $nr_errori++;
         }
     }
+    return $nr_errori;
 }
 
 
@@ -127,12 +124,16 @@ if ($tables->num_rows > 0) {
         }
         
         // Avvia la transazione
-        $conn->begin_transaction();
         try {
             $numRows = rand(20, 50);
-            populateTable($conn, $tableName, $columnNames, $columnTypes, $numRows);    
-            $conn->query("commit;");
-            echo "Inserite $numRows righe nella tabella $tableName.<br>";
+            $conn->begin_transaction();
+            $nr_errori = populateTable($conn, $tableName, $columnNames, $columnTypes, $numRows);    
+            if ($nr_errori == 0) {
+                $conn->query("commit;");
+                echo "Inserite $numRows righe nella tabella $tableName.<br>";
+            } else {
+                echo "sono falliti $nr_errori inserimenti";
+            }
         } catch (Exception $e) {
             // Se si verifica un errore, annulla la transazione
             $conn->rollback();
