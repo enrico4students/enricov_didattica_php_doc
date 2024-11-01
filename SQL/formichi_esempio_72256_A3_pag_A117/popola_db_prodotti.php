@@ -1,13 +1,13 @@
 <?php
+
+// require __DIR__ . "/utils_small.php";
+require "utils_small.php";
+
 // Configurazione di accesso al database
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "formichi_prodotti"; // Sostituisci con il tuo database
-
-function startsWith($string, $startString) {
-    return substr($string, 0, strlen($startString)) === $startString;
-}
 
 
 function createPaddedString($myStr, $numStr, $nrPad) {
