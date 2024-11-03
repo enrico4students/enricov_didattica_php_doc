@@ -1,4 +1,4 @@
-CREATE DATABASE formichi_prodotti;
+-- CREATE DATABASE formichi_prodotti;
 
 USE formichi_prodotti;
 
@@ -47,7 +47,8 @@ CREATE TABLE Composizioni(
 		REFERENCES Prodotti(id_prod)
 );
 
-// popolare
+
+-- ====================== popolare DB ==========================
 
 USE formichi_prodotti;
 
