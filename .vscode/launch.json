@@ -12,9 +12,9 @@
             "port": 9003
         },
         {
-            "name": "Xdebug map MOODLE",
+            "name": "Xdebug map xampp8030",
             "pathMappings": {
-                "D:\\programs\\moodle-311\\server\\moodle": "${workspaceRoot}"
+                "D:\\programs\\xampp8030\\htdocs": "${workspaceRoot}"
             },
             "stopOnEntry": true,
             "type": "php",

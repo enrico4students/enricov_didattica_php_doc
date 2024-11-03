@@ -1,5 +1,9 @@
 <?php
-echo "<h1>My first PHP page</h1>\n";
-echo "<div>prova1</div>\n";
-echo "<div>prova 2</div>\n";
-echo "<div>prova 3</div>\n";
+echo "<html>";
+echo "<head>";
+echo "<title>Benvenuto</title>";
+echo "</head>";
+echo "<body>";
+echo '<a href="index2.php">index2.php</a>';
+echo "</body>";
+echo "</html>";

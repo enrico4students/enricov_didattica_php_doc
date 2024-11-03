@@ -6,4 +6,3 @@ if (substr($sapi_type, 0, 3) == 'cgi') {
 } else {
     echo "You are not using CGI PHP\n";
 }
-?>
