@@ -1,3 +1,7 @@
 {
+    "php.stubs": [
+        "*"
+    ],
+    "php.debug.port": []
     
 }
