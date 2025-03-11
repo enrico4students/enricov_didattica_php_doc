@@ -3,6 +3,12 @@
 
 require '../../vendor/autoload.php';
 
+// Questo codice probabilmente è STRUTTURATO MALE, vogliamo usare un solo logger quindi 
+// il logger va creato solo una volta, non ogni volta che eseguiamo la pagina
+// probabilmente utile incacpsularlo in una funzione e mettere la funzione in un file dedicato
+
+// NB i messaggi attuali sono senza senso come prima verifica di funzionamento del logging
+
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
