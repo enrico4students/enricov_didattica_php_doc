@@ -1,6 +1,6 @@
 <?php
 echo "<html>";
-xdebug_break();
+# xdebug_break();
 echo "<head>";
 echo "<title>Benvenuto</title>";
 echo "</head>";

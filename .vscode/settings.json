@@ -2,6 +2,7 @@
     "php.stubs": [
         "*"
     ],
-    "php.debug.port": []
+    "php.debug.port": [],
+    "phpserver.relativePath": "."
     
 }
