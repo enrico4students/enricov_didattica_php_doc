@@ -1,6 +1,6 @@
 -- CREATE DATABASE formichi_prodotti;
 
-USE formichi_prodotti;
+USE form_prodotti;
 
 CREATE TABLE Componenti(
 	id_comp VARCHAR(4) NOT NULL,

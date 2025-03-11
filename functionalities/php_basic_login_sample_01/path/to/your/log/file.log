@@ -1,0 +1,5 @@
+[2025-01-30T23:02:53.833236+01:00] my_app.DEBUG: Questo è un messaggio di debug. {"dettagli":"Informazioni aggiuntive"} []
+[2025-01-30T23:02:53.837058+01:00] my_app.INFO: Utente effettuato l'accesso. {"utente":"Mario Rossi"} []
+[2025-01-30T23:02:53.837141+01:00] my_app.WARNING: Spazio su disco basso. [] []
+[2025-01-30T23:02:53.837187+01:00] my_app.ERROR: Impossibile connettersi al database. {"errore":"Errore di connessione"} []
+[2025-01-30T23:02:53.837254+01:00] my_app.CRITICAL: Errore fatale. {"eccezione":"[object] (Exception(code: 0): Errore critico at D:\\00_data\\08-dev\\didattica\\didattica_php\\functionalities\\php_basic_login_sample_01\\index.php:28)"} []
